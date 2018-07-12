@@ -21,7 +21,7 @@ spring:
         url: jdbc:mysql://localhost/delivery_order?verifyServerCertificate=false&useSSL=false&requireSSL=false
         username: root
     jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
+        database-platform: org.hibernate.dialect.MySQL5Dialect
         generate-ddl: false
         hibernate:
             ddl-auto: create
