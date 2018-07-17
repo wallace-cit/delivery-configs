@@ -31,7 +31,7 @@ spring:
         platform: mysql
         schema: classpath:/sql/schema.sql
         url: jdbc:mysql://localhost/oauth?verifyServerCertificate=false&useSSL=false&requireSSL=false
-        username: root
+        username: mysql
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
         generate-ddl: false
