@@ -29,7 +29,7 @@ zuul:
   routes:
     account: 
       path: /order/**
-      serviceId: order-service
+      serviceId: delivery-order-service
     
 ribbon:
   eureka:
