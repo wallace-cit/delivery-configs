@@ -3,7 +3,19 @@ info:
   
 server:
   port: 9094
-  
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 9091
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+wait-time-in-ms-when-sync-empty: 3000
+
 endpoints:
   restart:
     enabled: true
@@ -22,13 +34,7 @@ zuul:
 ribbon:
   eureka:
     enabled: true
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:9091/eureka/
-    registerWithEureka: false
-      
+    
 logging:
   level:
     ROOT: INFO
