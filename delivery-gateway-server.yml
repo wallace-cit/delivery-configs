@@ -27,9 +27,9 @@ endpoints:
 zuul:
   prefix: /api
   routes:
-    account: 
-      path: /order/**
-      serviceId: delivery-order-service
+    accounts: 
+      path: /accounts/**
+      serviceId: account-service
     
 ribbon:
   eureka:
