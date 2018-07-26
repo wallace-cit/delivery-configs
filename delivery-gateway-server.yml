@@ -1,41 +1,35 @@
 info:
-  component: Edge Server
+  component: Gateway
   
 server:
   port: 9094
-
+  
 eureka:
   instance:
     hostname: localhost
     port: 9091
   client:
     registerWithEureka: true
-    fetchRegistry: false
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
 wait-time-in-ms-when-sync-empty: 3000
 
-endpoints:
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
-  health:
-    sensitive: false
-
 zuul:
-  prefix: /api
-  routes:
-    accounts: 
-      path: /accounts/**
-      serviceId: account-service
-    
-ribbon:
-  eureka:
-    enabled: true
-    
-logging:
-  level:
-    ROOT: INFO
-    org.springframework.web: DEBUG
+   prefix: /api
+   routes:
+      accounts:
+        path: /accounts/**
+        serviceId: account-service
+
+account-service:
+  ribbon:
+    eureka:
+      enabled: true
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+    ServerListRefreshInterval: 60000
+    DeploymentContextBasedVipAddresses: account-service
+    NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter
+    ServerListSubsetFilter:
+      size: 5 
