@@ -2,17 +2,19 @@ info:
   component: Gateway
   
 server:
-  port: 9094
-  
+  port: 8080
+
 eureka:
   instance:
     hostname: localhost
-    port: 9091
+    port: 8001
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+      defaultZone: ${DISCOVERY_URL:http://localhost:8001}/eureka/
   server:
 wait-time-in-ms-when-sync-empty: 3000
 
@@ -20,16 +22,16 @@ zuul:
    prefix: /api
    routes:
       accounts:
-        path: /accounts/**
-        serviceId: account-service
+        path: /project-order-service/**
+        serviceId: project-order-service
 
-account-service:
+project-order-service:
   ribbon:
     eureka:
       enabled: true
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
     ServerListRefreshInterval: 60000
-    DeploymentContextBasedVipAddresses: account-service
+    DeploymentContextBasedVipAddresses: project-order-service
     NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter
     ServerListSubsetFilter:
       size: 5 
