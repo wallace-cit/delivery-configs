@@ -19,6 +19,8 @@ spring:
         platform: mysql
         url: jdbc:mysql://localhost:7001/project_order?verifyServerCertificate=false&useSSL=false&requireSSL=false
         username: root
+        data: classpath:/sql/data.sql
+        schema: classpath:/sql/schema.sql
     jpa:
         database-platform: org.hibernate.dialect.MySQL5Dialect
         generate-ddl: false
