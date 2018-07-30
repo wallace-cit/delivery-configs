@@ -24,6 +24,8 @@ security:
             scope: read,write
 
 spring:
+    application:
+        name: project-auth-server
     datasource:
         data: classpath:/sql/data.sql
         driver-class-name: com.mysql.jdbc.Driver
